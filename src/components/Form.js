@@ -1,21 +1,43 @@
 import React, { useContext } from 'react';
 
-import { CategoriasContext } from '../context/CategoriasContext';
 import useForm from '../hooks/useForm';
+
+import { CategoriasContext } from '../context/CategoriasContext';
+import { RecetasContext } from '../context/RecetaContext';
 
 const Form = () => {
 
     const { categorias } = useContext(CategoriasContext);
+    const { setBusqueda } = useContext(RecetasContext);
 
-    const [busqueda, setBusqueda, handleInputChange] = useForm({
+    const [busqueda, setState, handleInputChange] = useForm({
         nombre: '',
         categoria: ''
     });
 
     const { nombre, categoria } = busqueda;
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Validar...
+        // Pendiente
+
+        setBusqueda(busqueda);
+
+        // Limpiando Formulario
+        setState({
+            nombre: '',
+            categoria: ''
+        });
+    };
+
+
     return (
-        <form className="col-12">
+        <form
+            onSubmit={handleSubmit}
+            className="col-12"
+        >
             <fieldset className="text-center">
                 <legend>Busca Bebidas por Categoría o Ingrediente</legend>
             </fieldset>
