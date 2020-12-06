@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { CategoriasContext } from '../context/CategoriasContext';
+import useForm from '../hooks/useForm';
 
 const Form = () => {
+
+    const { categorias } = useContext(CategoriasContext);
+
+    const [busqueda, setBusqueda, handleInputChange] = useForm({
+        nombre: '',
+        categoria: ''
+    });
+
+    const { nombre, categoria } = busqueda;
+
     return (
         <form className="col-12">
             <fieldset className="text-center">
@@ -14,6 +27,8 @@ const Form = () => {
                         className="form-control"
                         name="nombre"
                         type="text"
+                        value={nombre}
+                        onChange={handleInputChange}
                     />
                 </div>
 
@@ -21,8 +36,20 @@ const Form = () => {
                     <select
                         className="form-control"
                         name="categoria"
+                        value={categoria}
+                        onChange={handleInputChange}
                     >
                         <option value="">-- Seleciona Categoría --</option>
+                        {
+                            categorias.map(({ strCategory }) => (
+                                <option
+                                    key={strCategory}
+                                    value={strCategory}
+                                >
+                                    {strCategory}
+                                </option>
+                            ))
+                        }
                     </select>
                 </div>
 
@@ -34,7 +61,7 @@ const Form = () => {
                     />
                 </div>
             </div>
-        </form>
+        </form >
     );
 };
 
