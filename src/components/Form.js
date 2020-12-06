@@ -20,9 +20,6 @@ const Form = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // Validar...
-        // Pendiente
-
         setBusqueda(busqueda);
 
         // Limpiando Formulario
