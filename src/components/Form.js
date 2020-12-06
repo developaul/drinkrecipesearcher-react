@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import useForm from '../hooks/useForm';
 
 import { CategoriasContext } from '../context/CategoriasContext';
-import { RecetasContext } from '../context/RecetaContext';
+import { RecetasContext } from '../context/RecetasContext';
 
 const Form = () => {
 
